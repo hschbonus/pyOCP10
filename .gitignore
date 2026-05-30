@@ -1,0 +1,16 @@
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+db.sqlite3
+!README.md
+*.log
+.env
+.DS_Store
+Thumbs.db
+mission
+.claude
+CLAUDE.md
+BACKLOG.md
+livrables

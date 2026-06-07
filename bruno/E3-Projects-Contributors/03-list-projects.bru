@@ -1,0 +1,22 @@
+meta {
+  name: 03 - List Projects
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{base_url}}/api/projects/
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+tests {
+  test("List projects - 200", function() {
+    expect(res.getStatus()).to.equal(200);
+    expect(res.getBody()).to.be.an("array");
+  });
+}

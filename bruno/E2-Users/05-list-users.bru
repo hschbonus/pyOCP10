@@ -1,0 +1,21 @@
+meta {
+  name: 05 - List Users
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{base_url}}/api/users/
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+tests {
+  test("List users - 200", function() {
+    expect(res.getStatus()).to.equal(200);
+  });
+}

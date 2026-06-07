@@ -1,0 +1,22 @@
+meta {
+  name: 04 - Get Project
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{base_url}}/api/projects/{{project_id}}/
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+tests {
+  test("Get project - 200", function() {
+    expect(res.getStatus()).to.equal(200);
+    expect(res.getBody()).to.have.property("name");
+  });
+}

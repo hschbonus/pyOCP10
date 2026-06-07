@@ -1,0 +1,29 @@
+meta {
+  name: 08 - Create Comment (Alice)
+  type: http
+  seq: 8
+}
+
+post {
+  url: {{base_url}}/api/comments/
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{alice_token}}
+}
+
+body:json {
+  {
+    "description": "Commentaire de test E5",
+    "issue": {{issue_id}}
+  }
+}
+
+tests {
+  test("Create Comment - 201", function() {
+    expect(res.getStatus()).to.equal(201);
+    bru.setVar("comment_id", res.getBody().id);
+  });
+}

@@ -1,0 +1,33 @@
+meta {
+  name: 07 - Create Issue (Alice)
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{base_url}}/api/issues/
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{alice_token}}
+}
+
+body:json {
+  {
+    "name": "Issue E5",
+    "description": "Issue de test pour les permissions",
+    "tag": "bug",
+    "priority": "high",
+    "status": "to do",
+    "project": {{project_id}}
+  }
+}
+
+tests {
+  test("Create Issue - 201", function() {
+    expect(res.getStatus()).to.equal(201);
+    bru.setVar("issue_id", res.getBody().id);
+  });
+}

@@ -1,0 +1,31 @@
+meta {
+  name: 02 - Add Contributor (Alice - auteur)
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{base_url}}/api/contributors/
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{alice_token}}
+}
+
+body:json {
+  {
+    "user": {{bob_id}},
+    "project": {{project_id}}
+  }
+}
+
+tests {
+  test("Auteur - add contributor - 201 ou 400 déjà existant", function() {
+    expect([201, 400]).to.include(res.getStatus());
+    if (res.getStatus() === 201) {
+      bru.setVar("new_contributor_id", res.getBody().id);
+    }
+  });
+}

@@ -1,0 +1,27 @@
+meta {
+  name: 06 - Update Issue (Bob - non auteur)
+  type: http
+  seq: 6
+}
+
+patch {
+  url: {{base_url}}/api/issues/{{issue_id}}/
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{bob_token}}
+}
+
+body:json {
+  {
+    "name": "Issue modifiée par Bob"
+  }
+}
+
+tests {
+  test("Contributeur non auteur - update issue - 403", function() {
+    expect(res.getStatus()).to.equal(403);
+  });
+}

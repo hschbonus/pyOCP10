@@ -1,0 +1,21 @@
+meta {
+  name: 11 - Delete Issue
+  type: http
+  seq: 11
+}
+
+delete {
+  url: {{base_url}}/api/issues/{{issue_id}}/
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+tests {
+  test("Delete issue - 204", function() {
+    expect(res.getStatus()).to.equal(204);
+  });
+}

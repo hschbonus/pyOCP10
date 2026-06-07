@@ -1,0 +1,21 @@
+meta {
+  name: 08 - Delete User
+  type: http
+  seq: 8
+}
+
+delete {
+  url: {{base_url}}/api/users/{{user_id}}/
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+tests {
+  test("Delete user - 204", function() {
+    expect(res.getStatus()).to.equal(204);
+  });
+}

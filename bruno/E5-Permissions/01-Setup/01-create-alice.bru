@@ -1,0 +1,28 @@
+meta {
+  name: 01 - Create Alice
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{base_url}}/api/users/
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "username": "alice_e5",
+    "email": "alice_e5@test.com",
+    "password": "Testpass_E5!",
+    "birth_date": "1990-01-01",
+    "can_be_contacted": true,
+    "can_data_be_shared": true
+  }
+}
+
+tests {
+  test("Create Alice - 201", function() {
+    expect(res.getStatus()).to.equal(201);
+  });
+}

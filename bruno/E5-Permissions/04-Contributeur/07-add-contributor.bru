@@ -1,0 +1,28 @@
+meta {
+  name: 07 - Add Contributor (Bob - non auteur projet)
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{base_url}}/api/contributors/
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{bob_token}}
+}
+
+body:json {
+  {
+    "user": {{bob_id}},
+    "project": {{project_id}}
+  }
+}
+
+tests {
+  test("Non auteur - add contributor - 403", function() {
+    expect(res.getStatus()).to.equal(403);
+  });
+}

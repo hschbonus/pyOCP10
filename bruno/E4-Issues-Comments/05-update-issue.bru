@@ -1,0 +1,28 @@
+meta {
+  name: 05 - Update Issue
+  type: http
+  seq: 5
+}
+
+patch {
+  url: {{base_url}}/api/issues/{{issue_id}}/
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "status": "in progress"
+  }
+}
+
+tests {
+  test("Update issue - 200", function() {
+    expect(res.getStatus()).to.equal(200);
+    expect(res.getBody().status).to.equal("in progress");
+  });
+}

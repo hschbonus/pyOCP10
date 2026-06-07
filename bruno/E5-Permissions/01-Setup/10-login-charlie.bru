@@ -1,0 +1,25 @@
+meta {
+  name: 10 - Login Charlie
+  type: http
+  seq: 10
+}
+
+post {
+  url: {{base_url}}/api/token/
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "username": "charlie_e5",
+    "password": "Testpass_E5!"
+  }
+}
+
+tests {
+  test("Login Charlie - 200", function() {
+    expect(res.getStatus()).to.equal(200);
+    bru.setVar("charlie_token", res.getBody().access);
+  });
+}

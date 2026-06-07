@@ -1,0 +1,21 @@
+meta {
+  name: 06 - List Contributors
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{base_url}}/api/contributors/
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+tests {
+  test("List contributors - 200", function() {
+    expect(res.getStatus()).to.equal(200);
+  });
+}

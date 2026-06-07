@@ -1,0 +1,21 @@
+meta {
+  name: 08 - Delete Project
+  type: http
+  seq: 8
+}
+
+delete {
+  url: {{base_url}}/api/projects/{{project_id}}/
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+tests {
+  test("Delete project - 204", function() {
+    expect(res.getStatus()).to.equal(204);
+  });
+}

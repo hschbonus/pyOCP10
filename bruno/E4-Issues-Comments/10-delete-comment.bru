@@ -1,0 +1,21 @@
+meta {
+  name: 10 - Delete Comment
+  type: http
+  seq: 10
+}
+
+delete {
+  url: {{base_url}}/api/comments/{{comment_id}}/
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+tests {
+  test("Delete comment - 204", function() {
+    expect(res.getStatus()).to.equal(204);
+  });
+}

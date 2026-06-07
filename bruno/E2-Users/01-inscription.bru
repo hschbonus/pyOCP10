@@ -1,0 +1,29 @@
+meta {
+  name: 01 - Inscription
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{base_url}}/api/users/
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "username": "user_e2",
+    "email": "user_e2@test.com",
+    "password": "Testpass_E2!",
+    "birth_date": "1995-06-15",
+    "can_be_contacted": true,
+    "can_data_be_shared": false
+  }
+}
+
+tests {
+  test("Inscription - 201", function() {
+    expect(res.getStatus()).to.equal(201);
+    bru.setVar("user_id", res.getBody().id);
+  });
+}

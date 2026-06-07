@@ -1,0 +1,33 @@
+meta {
+  name: 02 - Create Issue
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{base_url}}/api/issues/
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "name": "Bug login page",
+    "description": "Le formulaire plante sur mobile",
+    "tag": "bug",
+    "priority": "high",
+    "status": "to do",
+    "project": {{project_id}}
+  }
+}
+
+tests {
+  test("Create issue - 201", function() {
+    expect(res.getStatus()).to.equal(201);
+    bru.setVar("issue_id", res.getBody().id);
+  });
+}

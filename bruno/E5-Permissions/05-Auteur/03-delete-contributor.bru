@@ -1,0 +1,21 @@
+meta {
+  name: 03 - Delete Contributor (Alice - auteur)
+  type: http
+  seq: 3
+}
+
+delete {
+  url: {{base_url}}/api/contributors/{{bob_contributor_id}}/
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{alice_token}}
+}
+
+tests {
+  test("Auteur - delete contributor - 204", function() {
+    expect(res.getStatus()).to.equal(204);
+  });
+}

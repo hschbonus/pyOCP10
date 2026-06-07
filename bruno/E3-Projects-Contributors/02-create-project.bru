@@ -1,0 +1,30 @@
+meta {
+  name: 02 - Create Project
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{base_url}}/api/projects/
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "name": "Projet test E3",
+    "description": "Projet de test CRUD",
+    "type": "back-end"
+  }
+}
+
+tests {
+  test("Create project - 201", function() {
+    expect(res.getStatus()).to.equal(201);
+    bru.setVar("project_id", res.getBody().id);
+  });
+}

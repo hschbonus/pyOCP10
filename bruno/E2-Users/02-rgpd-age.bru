@@ -1,0 +1,28 @@
+meta {
+  name: 02 - RGPD refus age < 15 ans
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{base_url}}/api/users/
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "username": "mineur_e2",
+    "email": "mineur_e2@test.com",
+    "password": "Testpass_E2!",
+    "birth_date": "2015-01-01",
+    "can_be_contacted": false,
+    "can_data_be_shared": false
+  }
+}
+
+tests {
+  test("RGPD age < 15 - 400", function() {
+    expect(res.getStatus()).to.equal(400);
+  });
+}

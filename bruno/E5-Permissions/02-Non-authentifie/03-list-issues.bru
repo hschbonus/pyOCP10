@@ -1,0 +1,17 @@
+meta {
+  name: 03 - List Issues sans token
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{base_url}}/api/issues/
+  body: none
+  auth: none
+}
+
+tests {
+  test("Sans token - 401", function() {
+    expect(res.getStatus()).to.equal(401);
+  });
+}

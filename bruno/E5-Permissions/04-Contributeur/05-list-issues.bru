@@ -1,0 +1,22 @@
+meta {
+  name: 05 - List Issues (Bob - contributeur)
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{base_url}}/api/issues/
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{bob_token}}
+}
+
+tests {
+  test("Contributeur - list issues - 200", function() {
+    expect(res.getStatus()).to.equal(200);
+    expect(res.getBody()).to.be.an("array").with.lengthOf(1);
+  });
+}

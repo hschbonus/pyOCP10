@@ -1,0 +1,27 @@
+meta {
+  name: 03 - Update Project (Bob - non auteur)
+  type: http
+  seq: 3
+}
+
+patch {
+  url: {{base_url}}/api/projects/{{project_id}}/
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{bob_token}}
+}
+
+body:json {
+  {
+    "name": "Projet modifié par Bob"
+  }
+}
+
+tests {
+  test("Contributeur non auteur - update - 403", function() {
+    expect(res.getStatus()).to.equal(403);
+  });
+}

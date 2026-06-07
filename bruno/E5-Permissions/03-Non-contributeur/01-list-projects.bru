@@ -1,0 +1,22 @@
+meta {
+  name: 01 - List Projects (Charlie - non contributeur)
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{base_url}}/api/projects/
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{charlie_token}}
+}
+
+tests {
+  test("Non contributeur - liste vide - 200", function() {
+    expect(res.getStatus()).to.equal(200);
+    expect(res.getBody()).to.be.an("array").with.lengthOf(0);
+  });
+}

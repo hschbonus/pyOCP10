@@ -1,0 +1,30 @@
+meta {
+  name: 03 - Create Project (Alice)
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{base_url}}/api/projects/
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{alice_token}}
+}
+
+body:json {
+  {
+    "name": "Projet E5",
+    "description": "Projet de test pour les permissions E5",
+    "type": "back-end"
+  }
+}
+
+tests {
+  test("Create Project - 201", function() {
+    expect(res.getStatus()).to.equal(201);
+    bru.setVar("project_id", res.getBody().id);
+  });
+}

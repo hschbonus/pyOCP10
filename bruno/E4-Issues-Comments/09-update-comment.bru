@@ -1,0 +1,28 @@
+meta {
+  name: 09 - Update Comment
+  type: http
+  seq: 9
+}
+
+patch {
+  url: {{base_url}}/api/comments/{{comment_id}}/
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "description": "Mise à jour du commentaire"
+  }
+}
+
+tests {
+  test("Update comment - 200", function() {
+    expect(res.getStatus()).to.equal(200);
+    expect(res.getBody().description).to.equal("Mise à jour du commentaire");
+  });
+}

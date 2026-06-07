@@ -1,0 +1,17 @@
+meta {
+  name: 01 - List Projects sans token
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{base_url}}/api/projects/
+  body: none
+  auth: none
+}
+
+tests {
+  test("Sans token - 401", function() {
+    expect(res.getStatus()).to.equal(401);
+  });
+}

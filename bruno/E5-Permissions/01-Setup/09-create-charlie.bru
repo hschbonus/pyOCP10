@@ -1,0 +1,28 @@
+meta {
+  name: 09 - Create Charlie
+  type: http
+  seq: 9
+}
+
+post {
+  url: {{base_url}}/api/users/
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "username": "charlie_e5",
+    "email": "charlie_e5@test.com",
+    "password": "Testpass_E5!",
+    "birth_date": "1995-03-20",
+    "can_be_contacted": false,
+    "can_data_be_shared": false
+  }
+}
+
+tests {
+  test("Create Charlie - 201", function() {
+    expect(res.getStatus()).to.equal(201);
+  });
+}

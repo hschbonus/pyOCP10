@@ -1,0 +1,25 @@
+meta {
+  name: 05 - Login Bob
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{base_url}}/api/token/
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "username": "bob_e5",
+    "password": "Testpass_E5!"
+  }
+}
+
+tests {
+  test("Login Bob - 200", function() {
+    expect(res.getStatus()).to.equal(200);
+    bru.setVar("bob_token", res.getBody().access);
+  });
+}

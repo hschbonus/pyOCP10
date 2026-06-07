@@ -1,0 +1,29 @@
+meta {
+  name: 05 - Update Project
+  type: http
+  seq: 5
+}
+
+patch {
+  url: {{base_url}}/api/projects/{{project_id}}/
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "name": "Projet test E3 modifié",
+    "description": "Description mise à jour"
+  }
+}
+
+tests {
+  test("Update project - 200", function() {
+    expect(res.getStatus()).to.equal(200);
+    expect(res.getBody().name).to.equal("Projet test E3 modifié");
+  });
+}

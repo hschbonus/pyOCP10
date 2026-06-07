@@ -1,0 +1,22 @@
+meta {
+  name: 04 - Get Issue
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{base_url}}/api/issues/{{issue_id}}/
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+tests {
+  test("Get issue - 200", function() {
+    expect(res.getStatus()).to.equal(200);
+    expect(res.getBody()).to.have.property("name");
+  });
+}

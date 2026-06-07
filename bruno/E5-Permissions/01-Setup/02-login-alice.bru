@@ -1,0 +1,25 @@
+meta {
+  name: 02 - Login Alice
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{base_url}}/api/token/
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "username": "alice_e5",
+    "password": "Testpass_E5!"
+  }
+}
+
+tests {
+  test("Login Alice - 200", function() {
+    expect(res.getStatus()).to.equal(200);
+    bru.setVar("alice_token", res.getBody().access);
+  });
+}

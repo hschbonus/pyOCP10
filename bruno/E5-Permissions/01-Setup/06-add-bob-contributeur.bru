@@ -1,0 +1,29 @@
+meta {
+  name: 06 - Add Bob as Contributor (Alice)
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{base_url}}/api/contributors/
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{alice_token}}
+}
+
+body:json {
+  {
+    "user": {{bob_id}},
+    "project": {{project_id}}
+  }
+}
+
+tests {
+  test("Add Bob contributor - 201", function() {
+    expect(res.getStatus()).to.equal(201);
+    bru.setVar("bob_contributor_id", res.getBody().id);
+  });
+}

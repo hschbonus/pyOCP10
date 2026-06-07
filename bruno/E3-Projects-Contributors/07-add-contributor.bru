@@ -1,0 +1,29 @@
+meta {
+  name: 07 - Add Contributor
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{base_url}}/api/contributors/
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "user_id": 2,
+    "project_id": {{project_id}}
+  }
+}
+
+tests {
+  test("Add contributor - 201", function() {
+    expect(res.getStatus()).to.equal(201);
+    bru.setVar("contributor_id", res.getBody().id);
+  });
+}

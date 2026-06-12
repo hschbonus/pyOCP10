@@ -17,6 +17,7 @@ auth:bearer {
 tests {
   test("List issues - 200", function() {
     expect(res.getStatus()).to.equal(200);
-    expect(res.getBody()).to.be.an("array");
+    expect(res.getBody()).to.have.property("results").that.is.an("array");
+    expect(res.getBody()).to.have.property("count");
   });
 }

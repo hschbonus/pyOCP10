@@ -17,6 +17,7 @@ auth:bearer {
 tests {
   test("Non contributeur - liste vide - 200", function() {
     expect(res.getStatus()).to.equal(200);
-    expect(res.getBody()).to.be.an("array").with.lengthOf(0);
+    expect(res.getBody()).to.have.property("results").that.is.an("array").with.lengthOf(0);
+    expect(res.getBody()).to.have.property("count").that.equals(0);
   });
 }

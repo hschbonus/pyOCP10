@@ -4,8 +4,8 @@ API RESTful de suivi de problèmes techniques, développée avec Django REST Fra
 
 ## Prérequis
 
-- Python 3.12+
-- [Poetry](https://python-poetry.org/) *(ou Pipenv — à compléter)*
+- Python 3.14+
+- [Poetry](https://python-poetry.org/)
 
 ## Installation
 
@@ -60,19 +60,24 @@ Inclure le token dans les requêtes suivantes :
 Authorization: Bearer <access_token>
 ```
 
-## Endpoints principaux
+## Endpoints
 
 | Méthode | Endpoint | Description |
 |---------|----------|-------------|
 | POST | `/api/users/` | Inscription |
+| GET | `/api/users/` | Lister les utilisateurs |
+| GET/PUT/PATCH/DELETE | `/api/users/{id}/` | Détail d'un utilisateur |
 | POST | `/api/token/` | Connexion (JWT) |
 | POST | `/api/token/refresh/` | Rafraîchir le token |
 | GET/POST | `/api/projects/` | Lister / créer des projets |
-| GET/PUT/DELETE | `/api/projects/{id}/` | Détail d'un projet |
-| GET/POST | `/api/projects/{id}/contributors/` | Contributeurs d'un projet |
-| GET/POST | `/api/projects/{id}/issues/` | Issues d'un projet |
-| GET/POST | `/api/projects/{id}/issues/{id}/comments/` | Commentaires d'une issue |
+| GET/PUT/PATCH/DELETE | `/api/projects/{id}/` | Détail d'un projet |
+| GET/POST | `/api/contributors/` | Lister / ajouter des contributeurs |
+| DELETE | `/api/contributors/{id}/` | Supprimer un contributeur |
+| GET/POST | `/api/issues/` | Lister / créer des issues |
+| GET/PUT/PATCH/DELETE | `/api/issues/{id}/` | Détail d'une issue |
+| GET/POST | `/api/comments/` | Lister / créer des commentaires |
+| GET/PUT/PATCH/DELETE | `/api/comments/{id}/` | Détail d'un commentaire |
 
 ## Tester l'API
 
-Les requêtes peuvent être testées avec [Bruno](https://www.usebruno.com/) ou Postman.
+Les requêtes sont disponibles dans le dossier `bruno/` (compatible [Bruno](https://www.usebruno.com/)).

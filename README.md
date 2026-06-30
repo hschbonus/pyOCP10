@@ -12,7 +12,7 @@ API RESTful de suivi de problèmes techniques, développée avec Django REST Fra
 ### 1. Cloner le repository
 
 ```bash
-git clone https://github.com/HerveSchmidt/pyOCP10.git
+git clone https://github.com/hschbonus/pyOCP10.git
 cd pyOCP10
 ```
 

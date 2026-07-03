@@ -28,7 +28,7 @@ class ContributorViewSet(ModelViewSet):
         return Contributor.objects.all()
 
     serializer_class = ContributorSerializer
-    permission_classes = [IsAuthenticated, IsAuthor]
+    permission_classes = [IsAuthenticated, IsAuthor, IsContributor]
 
     def perform_create(self, serializer):
         project = serializer.validated_data['project']
